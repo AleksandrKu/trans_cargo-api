@@ -1,96 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Export to Cargo</title>
     <link rel="stylesheet" type="text/css" href="css/css.css">
 </head>
+
 <body id="body">
-<div id="top" class="top center" style="width: 100%">
-    <div class="left" style="width: 81%">
-        <div class="export" id="text-export">
-            Export to Cargo
-        </div>
-
-        <div id="company-access-token" class="left hidden" style="margin-left: 5px;">
-            <input id="access-token" type="text" class="form-control" name="access-token"
-                   value=""
-                   placeholder="Enter company access token" style="height:20px;">
-        </div>
-        <div id="company-enter-token" class="left  hidden">
-            <button id="enter-token" class="button left">Enter</button>
-        </div>
-        <div class="left hidden" id="cargo-managers" style="margin-left: 30px; width:25%">
-            <select class="form-control" id="select-cargo-managers" style="height:34px;">
-                <option value="" disabled selected hidden>Cargo users</option>
-            </select>
-        </div>
-
-        <div class="left hidden" id="trans-managers" style="margin-left: 30px; width:25%">
-            <select class="form-control" id="select-trans-managers" style="height:34px;">
-                <option value="" disabled selected hidden>Trans users</option>
-            </select>
-        </div>
-
-
-        <div id="user" class="left hidden"></div>
-    </div>
-    <div class="buttons left" style="width: 18%; text-align: right">
-        <button id="export" class="button  hidden" style="margin-left: 5px">Export</button>
-        <button id="exit" class="button hidden" style="margin-left: 10px">Exit</button>
-    </div>
-
-</div>
-
-<div id="main-table" class="hidden">
-    <table id="table" width='100%' border="0" cellspacing="1">
-        <tr class="tr-header">
-            <th></th>
-            <th>Road</th>
-            <th>Date</th>
-            <th>Cargo</th>
-            <th>Price</th>
-            <th>Manager</th>
-        </tr>
-    </table>
-
-</div>
-<div class="result hidden" id="text-load">Load your orders to extension:
-    <button id="load" class="button">Load</button>
-</div>
-<div id="cargoLogin" class="center">
-    <br>
-    <div>
-        <div class="center">
-            
-        </div>
-        <div class="container">
-            <div id="error"></div>
-            <form id="cargoAuth" style="text-align: center">
-                <div>
-                    <label for="cargo_login">Email</label>
-                    <input type="email" class="form-control" id="cargo_login" name="cargo_login"
-                           value=""
-                           placeholder="Wpisz e-mail" required>
-                </div>
-                <br>
-                <div>
-                    <label for="cargo_password">Password</label>
-                    <input type="password" class="form-control" id="cargo_password" name="cargo_password"
-                           value=""
-                           placeholder="Wpisz hasło" required>
-                    <span class=""></span>
-                </div>
-                <br>
-                <div class="center">
-                    <button id="cargoSubmit" type="button" value="Submit" class="">Connect to account in Cargo
-                    </button>
-                </div>
-            </form>
+    <div id="top" class="top center" style="width: 100%">
+        <div class="export" id="text-export">Export to Cargo</div>
+        <div id="user" class="left hidden" style="width: 80%">Export to Cargo</div>
+        <div class="buttons left" style="width: 18%; text-align: right">
+            <button id="exit" class="button hidden" style="margin-left: 10px">Exit</button>
         </div>
     </div>
-</div>
-<script src="jquery.js"></script>
-<script src="popup.js"></script>
+
+    <div id="cargoLogin" class="center">
+        <br>
+        <div>
+            <div class="center"></div>
+            <div class="container">
+                <div id="error"></div>
+                <form id="cargoAuth" style="text-align: center">
+                    <div>
+                        <label for="cargo_login">Email</label>
+                        <input type="email" class="form-control" id="cargo_login" name="cargo_login" value=""
+                            placeholder="Wpisz e-mail" required>
+                    </div>
+                    <br>
+                    <div>
+                        <label for="cargo_password">Password</label>
+                        <input type="password" class="form-control" id="cargo_password" name="cargo_password" value=""
+                            placeholder="Wpisz hasło" required>
+                        <span class=""></span>
+                    </div>
+                    <br>
+                    <div class="center">
+                        <button id="cargoSubmit" type="button" value="Submit" class="">Connect to account in Cargo
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="popup.js"></script>
 </body>
 </html>

@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Load Assistant",
   "short_name": "Load Assistant",
-  "version": "3.1.1",
+  "version": "3.1.17",
   "description": "The program helps in working with loads.",
   "content_scripts": [
     {
@@ -10,8 +10,7 @@
         "<all_urls>"
       ],
       "js": [
-        "jquery.js",
-        "content.js"
+        "background.js"
       ]
     }
   ],
