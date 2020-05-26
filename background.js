@@ -1,13 +1,14 @@
 'use strict';
 const trucks = new Map([
-  ['standard', '55'],
+  ['skrzynia', '3'],
+  ['sztywna zabudowa', '3'],
+  ['standard', '2'],
   ['firanka', '2'],
   ['izoterma', '3'],
   ['cysterna spożywcza', '7'],
   ['chłodnia', '1'],
-  ['hakówka', '16'],
-  ['inna cysterna', '2'],
-  ['inne', '2'],
+  ['hakówka', '1'],
+  ['inna cysterna', '7'],
   ['laweta', '6'],
 ]);
 let userId;
@@ -30,9 +31,14 @@ const preparingBody = body => {
   const destinationsName = body.destinations.split(' ')[2];
   const destinationsZipcode = body.destinations.split(' ')[1];
 
-  const types = body.type.split(',');
-  const typeName = types[0] ? types[0].trim() : 'standard';
-  const type = trucks.has(typeName) ? trucks.get(typeName) : 55;
+  const trailersCargo = body.trailers.split(',');
+  const trailers = [];
+  for (let trailer of trailersCargo) {
+    trailer = trailer ? trailer.trim() : 'standard';
+    const number = trucks.has(trailer) ? Number(trucks.get(trailer)) : 55;
+    trailers.push(number);
+  }
+  if (trailers.length > 5) return null;
   const volumeldm = body.volumeldm;
   const weight = body.weight;
   const wayOfLoading = body.wayOfLoading;
@@ -43,7 +49,8 @@ const preparingBody = body => {
   const ftlOrLtl = body.ftlOrLtl ? body.ftlOrLtl : '';
   const full = ftlOrLtl.includes('FTL') ? 1 : 0;
   const partly = ftlOrLtl.includes('LTL') ? 1 : 0;
-  if (!(originCountry && originName && destinationsCountry && destinationsName && type && (weight || volumeldm))) return null;
+  const type = 55;
+  if (!(originCountry && originName && destinationsCountry && destinationsName && trailers && type && (weight || volumeldm))) return null;
   const response = {
     origins: [
       {
@@ -60,6 +67,7 @@ const preparingBody = body => {
       },
     ],
     type,
+    trailers,
     fromDate,
     tillDate,
     fromDateto,
@@ -160,7 +168,7 @@ const getCargoFromPage = () => {
   order.destinations = destinations ? destinations.innerText : '';
 
   const type = document.querySelector('#form > div > div > div > div > div:nth-child(1) > div > div > div > div > label > div > div:nth-child(2) > label > div > div > input');
-  order.type = type ? type.value : '';
+  order.trailers = type ? type.value : '';
 
   const volumeldm = document.querySelector('#form > div > div > div > div > div:nth-child(1) > div > div > div > div > label[data-ctx="loading-meters-text-field"] > div:nth-child(2) > div > input');
   order.volumeldm = volumeldm ? volumeldm.value : '';
@@ -179,7 +187,7 @@ const getCargoFromPage = () => {
 
   if (order.origins &&
     order.destinations &&
-    order.type &&
+    order.trailers &&
     order.fromDate &&
     order.toDate &&
     order.weight
@@ -214,7 +222,7 @@ function checkButtonSendCargo() {
           if (body &&
             origins && origins[0] && origins[0].country && origins[0].name &&
             destinations && destinations[0] && destinations[0].country && destinations[0].name &&
-            body.type &&
+            body.trailers &&
             body.fromDate &&
             body.tillDate &&
             body.fromDateto &&

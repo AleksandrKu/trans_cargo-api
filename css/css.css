@@ -2,7 +2,7 @@ body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     margin: 0;
     margin-top: -2px;
-    width: 780px;
+    width: 380px;
     max-height: 400px;
     background-color: #fff;
     overflow-x: hidden;
@@ -29,13 +29,8 @@ body {
     width: 40%;
 }
 
-.width_30 {
-    width: 30%;
-}
-
 .buttons {
-    width: 20%;
-    text-align: center;
+    text-align: right;
 }
 
 .export {
@@ -47,7 +42,7 @@ body {
 }
 
 #exit {
-    margin-left: 20px;
+    margin-left: 5px;
 }
 
 .left {
@@ -165,13 +160,6 @@ label {
     padding-right: 15%;
 }
 
-.result {
-    font-size: 18px;
-    text-align: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
 .link {
     display: inline-block;
     padding: 6px 12px;
@@ -194,46 +182,8 @@ label {
     border-radius: 4px;
 }
 
-.default {
-    color: #333;
-    background-color: #fff;
-    border-color: #ccc;
-}
-
-.default:hover {
-    color: #333;
-    background-color: #e6e6e6;
-    border-color: #adadad;
-}
-
 a {
     text-decoration: none;
-}
-
-table {
-    margin-bottom: 1px;
-    border-spacing: 0;
-    border-collapse: collapse
-}
-
-td, th {
-    border: 1px solid #d0d0d0;
-    padding: 5px;
-    color: #555;
-    font-size: 14px;
-    line-height: 1.42857143;
-}
-
-.tr-header {
-    color: #666666;
-    text-align: center;
-    font-size: 14px;
-    background-color: #f9f9f9;
-}
-
-#go-to-site {
-    margin-left: 10px;
-    margin-bottom: 2px;
 }
 
 .right {
