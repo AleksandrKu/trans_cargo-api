@@ -162,10 +162,14 @@ const getCargoFromPage = () => {
   order.toTime = toTime ? toTime.value : '';
 
   const origins = document.querySelector('#form > div > div > div:nth-child(2) > div > div > div:nth-child(1) > div > div > div > div > div');
-  order.origins = origins ? origins.innerText : '';
-
+  const originsInput = document.querySelector('#form > div > div > div:nth-child(2) > div > div > div:nth-child(1) > label > div > div:nth-child(2) > label > div > div > input');
+  const originsInputValue = originsInput ? originsInput.value : '';
+  order.origins = origins && origins.innerText ? origins.innerText : originsInputValue;
+  
   const destinations = document.querySelector('#form > div > div > div:nth-child(2) > div > div > div:nth-child(2) > div > div > div > div > div');
-  order.destinations = destinations ? destinations.innerText : '';
+  const destinationsInput = document.querySelector('#form > div > div > div:nth-child(2) > div > div.b_a_3piv3jt > div:nth-child(2) > label > div > div:nth-child(2) > label > div > div > input');
+  const destinationsInputValue = destinationsInput ? destinationsInput.value : '';
+  order.destinations = destinations && destinations.innerText ? destinations.innerText : destinationsInputValue;
 
   const type = document.querySelector('#form > div > div > div > div > div:nth-child(1) > div > div > div > div > label > div > div:nth-child(2) > label > div > div > input');
   order.trailers = type ? type.value : '';
@@ -184,7 +188,7 @@ const getCargoFromPage = () => {
 
   const ftlOrLtl = document.querySelector('input[name="form.requirements.isFtl"]:checked');
   order.ftlOrLtl = ftlOrLtl && ftlOrLtl.value ? ftlOrLtl.value : '';
-
+  console.log(order);
   if (order.origins &&
     order.destinations &&
     order.trailers &&
@@ -204,7 +208,6 @@ function checkButtonSendCargo() {
       sendCorgoButton.onclick = async function () {
         try {
           const cargo = getCargoFromPage();
-          console.log({ cargo });
           if (!cargo) {
             console.error('Extension: cargo empty');
             return;
