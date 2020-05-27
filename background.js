@@ -213,6 +213,10 @@ function checkButtonSendCargo() {
             return;
           }
           await getCookies();
+          if (!login || !password) {
+            console.error('Extension: Invalid login or password');
+            return;
+          }
           const body = preparingBody(cargo);
           console.log({ body });
           if (!body) {
