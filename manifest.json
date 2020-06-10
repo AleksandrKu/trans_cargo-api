@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Load Assistant",
   "short_name": "Load Assistant",
-  "version": "4.0.1",
+  "version": "4.0.3",
   "description": "The program helps in working with loads.",
   "content_scripts": [
     {
@@ -13,7 +13,10 @@
       "js": ["background.js"]
     }
   ],
-  "permissions": ["cookies"],
+  "permissions": [
+    "cookies",
+    "https://platform.trans.eu/*"
+  ],
   "browser_action": {
     "default_icon": {
       "16": "img/16x16.png",

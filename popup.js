@@ -76,7 +76,7 @@ function logged(login) {
 
   const user = document.getElementById('user');
   user.classList.remove('hidden');
-  user.innerHTML = ' Manager: ' + login;
+  user.textContent = ` Manager:  ${login}`;
 }
 
 (async () => {
