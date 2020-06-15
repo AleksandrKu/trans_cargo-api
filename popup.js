@@ -77,6 +77,9 @@ function logged(login) {
   const user = document.getElementById('user');
   user.classList.remove('hidden');
   user.textContent = ` Manager:  ${login}`;
+
+  const textImport = document.getElementById('text-import');
+  textImport.classList.remove('hidden');
 }
 
 (async () => {

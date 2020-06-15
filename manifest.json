@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "Load Assistant",
-  "short_name": "Load Assistant",
-  "version": "4.0.3",
-  "description": "The program helps in working with loads.",
+  "name": "Freights Assistant",
+  "short_name": "Freights Assistant",
+  "version": "4.0.4",
+  "description": "The extension optimizes daily work when adding freight - it automatically sends orders for cargo transportation, thereby saving your time. The extension is intended only for users of trance.eu.",
   "content_scripts": [
     {
       "matches": [
