@@ -1,6 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
-const cargoLtUrl = 'https://io.cargo.lt/';
+//const cargoLtUrl = 'https://io.cargo.lt/';
+const cargoLtUrl = 'https://cargo-api-express.herokuapp.com/';
 const urlDomain = 'https://platform.trans.eu/freights/sent';
 let globalLogin;
 let globalPassword;

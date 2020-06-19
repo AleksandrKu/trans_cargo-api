@@ -2,8 +2,8 @@
   "manifest_version": 2,
   "name": "Freights Assistant",
   "short_name": "Freights Assistant",
-  "version": "4.0.4",
-  "description": "The extension optimizes daily work when adding freight - it automatically sends orders for cargo transportation, thereby saving your time. The extension is intended only for users of trance.eu.",
+  "version": "4.0.6",
+  "description": "The extension optimizes daily work when adding freight - it automatically sends orders for cargo transportation.",
   "content_scripts": [
     {
       "matches": [
