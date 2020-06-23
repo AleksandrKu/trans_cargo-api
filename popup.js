@@ -1,20 +1,19 @@
 /* eslint-disable no-undef */
 'use strict';
-//const cargoLtUrl = 'https://io.cargo.lt/';
 const cargoLtUrl = 'https://cargo-api-express.herokuapp.com/';
-const urlDomain = 'https://platform.trans.eu/freights/sent';
+const urlCookie = cargoLtUrl;
 let globalLogin;
 let globalPassword;
 let globalUserId;
 
-function setCookies(url = 'https://system.trans.eu/', login, password, userId) {
+function setCookies(login, password, userId) {
   const days = 3600 * 1000 * 24 * 20; //20 days
   const expirationDate = (new Date().getTime() + days) / 1000;
   const loginCookieObj = {
     name: 'login',
     value: login,
     path: '/',
-    url,
+    url: urlCookie,
     expirationDate,
     secure: true
   };
@@ -22,7 +21,7 @@ function setCookies(url = 'https://system.trans.eu/', login, password, userId) {
     name: 'id',
     value: password,
     path: '/',
-    url,
+    url: urlCookie,
     expirationDate,
     secure: true
   };
@@ -30,7 +29,7 @@ function setCookies(url = 'https://system.trans.eu/', login, password, userId) {
     name: 'userId',
     value: String(userId),
     path: '/',
-    url,
+    url: urlCookie,
     expirationDate,
     secure: true
   };
@@ -41,7 +40,7 @@ function setCookies(url = 'https://system.trans.eu/', login, password, userId) {
   } catch (e) { console.error('Error setting cookie:\n' + e); }
 }
 
-function getCookie(url = 'https://system.trans.eu/', name) {
+function getCookie(url, name) {
   return new Promise((resolve, reject) => {
     const cookieObj = { name, url };
     try {
@@ -84,23 +83,23 @@ function logged(login) {
 }
 
 (async () => {
-  const loginCookie = await getCookie(urlDomain, 'login');
-  const passwordCookie = await getCookie(urlDomain, 'id');
-  const userIdCookie = await getCookie(urlDomain, 'userId');
+  const loginCookie = await getCookie(urlCookie, 'login');
+  const passwordCookie = await getCookie(urlCookie, 'id');
+  const userIdCookie = await getCookie(urlCookie, 'userId');
   if (loginCookie && passwordCookie && userIdCookie) {
     globalLogin = loginCookie;
     globalPassword = passwordCookie;
     globalUserId = userIdCookie;
-    logged(loginCookie); //hide registration form
+    logged(window.atob(loginCookie)); //hide registration form
   }
 })();
 
 // exit, delete cookie
 const cargoExit = document.getElementById('exit');
 cargoExit.addEventListener('click', () => {
-  chrome.cookies.remove({ name: 'login', url: urlDomain }, () => {});
-  chrome.cookies.remove({ name: 'id', url: urlDomain }, () => {});
-  chrome.cookies.remove({ name: 'userId', url: urlDomain }, () => {});
+  chrome.cookies.remove({ name: 'login', url: urlCookie }, () => {});
+  chrome.cookies.remove({ name: 'id', url: urlCookie }, () => {});
+  chrome.cookies.remove({ name: 'userId', url: urlCookie }, () => {});
   chrome.runtime.reload();
 });
 
@@ -118,15 +117,15 @@ cargoSubmit.addEventListener('click', () => {
   xhr.onload = async function () {
     try {
       const tokenObject = JSON.parse(xhr.responseText);
-      if (xhr.readyState === 4 && xhr.status === 200 && typeof tokenObject.userId === 'number') {
-        await setCookies(urlDomain, credential.login, credential.password, tokenObject.userId);
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        await setCookies(tokenObject.login, tokenObject.password, tokenObject.userId);
         globalLogin = tokenObject.login;
         globalPassword = tokenObject.password;
         globalUserId = tokenObject.userId;
-        logged(credential.login); //hide registration form
+        logged(window.atob(tokenObject.login)); //hide registration form
       } else {
         document.getElementById('error').innerText = 'Invalid login or password';
-        console.error(tokenObject);
+        console.error(xhr ? xhr.responseText : 'Error');
       }
     } catch (err) {
       console.error(err);

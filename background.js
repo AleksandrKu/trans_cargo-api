@@ -121,7 +121,7 @@ const getToken = async body => {
   return result.data;
 };
 
-const sendCargo = async (body, token) => {
+const sendCargo = async body => {
   const urlApi = baseApiUrl + '/cargos';
   const jsonBody = JSON.stringify(body);
   const response = await fetch(urlApi, {
@@ -129,7 +129,7 @@ const sendCargo = async (body, token) => {
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       'Content-Length': jsonBody.length,
-      'Access-Token': token
+      //'Access-Token': token
     },
     body: jsonBody,
   });
@@ -236,7 +236,9 @@ function checkButtonSendCargo() {
             body.tillDateto &&
             body.weight
           ) {
-            const token = await getToken({ login, password });
+            //const token = await getToken({ login, password });
+            body.login = login;
+            body.password = password;
             const responseFromApi = await sendCargo(body, token);
             console.log('Extension: ' + responseFromApi);
           } else {

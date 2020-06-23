@@ -8,14 +8,14 @@
     {
       "matches": [
         "https://platform.trans.eu/*",
-        "https://cargo-api-express.herokuapp.com/*",
-        "https://io.cargo.lt/*"],
+        "https://cargo-api-express.herokuapp.com/*"
+      ],
       "js": ["background.js"]
     }
   ],
   "permissions": [
     "cookies",
-    "https://platform.trans.eu/*"
+    "https://cargo-api-express.herokuapp.com/*"
   ],
   "browser_action": {
     "default_icon": {
