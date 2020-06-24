@@ -239,7 +239,7 @@ function checkButtonSendCargo() {
             //const token = await getToken({ login, password });
             body.login = login;
             body.password = password;
-            const responseFromApi = await sendCargo(body, token);
+            const responseFromApi = await sendCargo(body);
             console.log('Extension: ' + responseFromApi);
           } else {
             console.error('Extension: empty body');

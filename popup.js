@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 'use strict';
 const cargoLtUrl = 'https://cargo-api-express.herokuapp.com/';
-const urlCookie = cargoLtUrl;
+const urlCookie = 'https://platform.trans.eu';
 let globalLogin;
 let globalPassword;
 let globalUserId;
